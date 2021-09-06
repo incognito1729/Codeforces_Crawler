@@ -1,14 +1,15 @@
-import React from 'react'
+import React from "react";
+import Card from "./Card";
 
 function BasicInfo(props) {
-    return (
-        <div>
-            {console.log(props.handle)}
-            <h1>{props.handle}</h1>
-            <p>{props.rating}</p>
-            <p>{props.rank}</p>
-        </div>
-    )
+  return (
+    <Card>
+      {console.log(props.handle)}
+      <h1>{props.handle}</h1>
+      <p>{props.rating}</p>
+      <p>{props.rank}</p>
+    </Card>
+  );
 }
 
 export default BasicInfo;
