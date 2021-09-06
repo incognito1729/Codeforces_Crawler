@@ -1,4 +1,6 @@
 import React from "react";
+import Card from "./Card";
+import ProblemLevel from "./ProblemLevel";
 
 function UserStat(props) {
   let problemLevel = {
@@ -17,14 +19,12 @@ function UserStat(props) {
   };
   const unsolved = new Set();
   const solved = new Set();
-
-  const language = new Set();
   const programmingLanguage = new Map();
   const acceptedSubmission = () => {
     let counter = 0;
+    console.log(props.submission);
     props.submission["result"].map((chk) => {
       if (programmingLanguage.has(chk["programmingLanguage"])) {
-        language.add(chk["programmingLanguage"]);
         let curr = programmingLanguage.get(chk["programmingLanguage"]);
         curr += 1;
         programmingLanguage.set(chk["programmingLanguage"], curr);
@@ -33,6 +33,7 @@ function UserStat(props) {
       }
       if (chk["verdict"] === "OK") {
         counter += 1;
+        console.log(chk["problem"]["index"]);
         problemLevel[chk["problem"]["index"]] += 1;
         solved.add(chk["problem"]["name"]);
       } else {
@@ -40,16 +41,14 @@ function UserStat(props) {
           unsolved.add(chk["problem"]["name"]);
         }
       }
-      return counter;
     });
+    return counter;
   };
-  const languages = language.forEach((key) => {
-    // {console.log(key)}
-    return <p>{key}</p>;
+  const langStat = programmingLanguage.forEach(function (value, key) {
+    return `<p>${key}: ${value}</p>`;
   });
-  console.log(languages);
   return (
-    <div>
+    <Card>
       <p>Total Accepted Solution: {acceptedSubmission()}</p>
       <p>A: {problemLevel["A"]}</p>
       <p>B: {problemLevel["B"]}</p>
@@ -57,15 +56,10 @@ function UserStat(props) {
       <p>D: {problemLevel["D"]}</p>
       <p>E: {problemLevel["E"]}</p>
       <p>F: {problemLevel["F"]}</p>
-      <p>Unsolved: {unsolved.size}</p>
-      <p>{programmingLanguage.size}</p>
-      <div>
-        {language.size}
-        {language.forEach((value, key) => {
-          return value;
-        })}
-      </div>
-    </div>
+      <ProblemLevel problemLevel={problemLevel} username={props.username} />
+      {/* <p>Unsolved: {unsolved.size}</p>
+      {programmingLanguage.size > 0 && langStat} */}
+    </Card>
   );
 }
 
