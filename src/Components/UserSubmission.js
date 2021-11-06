@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card";
 import UserStat from "./UserStat";
+import Welcome from "./Welcome";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function UserSubmission(prop) {
   const [base, setBase] = useState("");
@@ -21,12 +23,13 @@ function UserSubmission(prop) {
   const submitHandler = (e) => {
     // console.log(handle);
     e.preventDefault();
+
     setBase(`https://codeforces.com/api/user.status?handle=${username}`);
     // SetUsername("");
   };
   const [username, SetUsername] = useState("");
   return (
-    <Card>
+    <Card >
       <form onSubmit={submitHandler}>
         <input
           type="text"
@@ -37,7 +40,7 @@ function UserSubmission(prop) {
           }}
         />
       </form>
-
+      {username.length > 0 && <Welcome username={username} />}
       {submission["status"] === "OK" && (
         <UserStat submission={submission} username={username} />
       )}

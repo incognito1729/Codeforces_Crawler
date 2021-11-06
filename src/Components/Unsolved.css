@@ -1,0 +1,18 @@
+.unsolved{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;  
+    /* align-content: space-between; */
+    width: 100%;
+
+}
+
+.unsolved__link{
+    padding: 1px;
+    margin-top: 5px;
+}
+
+.unsolved__link:hover{
+    background-color: whitesmoke;
+    border-radius: 10px;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "./Card";
 import Chart from "react-google-charts";
+import { Spinner } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function ProblemLevel(props) {
   let problemLevel = {
@@ -17,29 +19,29 @@ function ProblemLevel(props) {
     K: 0,
     L: 0
   };
-
   return (
     <>
-      <Card>
+      <Card >
         <Chart
-          width={"500px"}
-          height={"300px"}
+          width={"900px"}
+          height={"600px"}
+
           chartType="Bar"
-          loader={<div>Loading Chart</div>}
+          loader={<Spinner animation="border" variant="primary" />}
           data={[
-            ["Problems", "Solved"],
-            ["A", props.problemLevel["A"]],
-            ["B", props.problemLevel["B"]],
-            ["C", props.problemLevel["C"]],
-            ["D", props.problemLevel["D"]],
-            ["E", props.problemLevel["E"]],
-            ["F", props.problemLevel["F"]],
-            ["G", props.problemLevel["G"]],
-            ["H", props.problemLevel["H"]],
-            ["I", props.problemLevel["I"]],
-            ["J", props.problemLevel["J"]],
-            ["K", props.problemLevel["K"]],
-            ["L", props.problemLevel["L"]]
+            ["Problems", "Solved", "unsolved"],
+            ["A", props.problemLevel["A"], props.problemUnsolvedLevel["A"]],
+            ["B", props.problemLevel["B"], props.problemUnsolvedLevel["B"]],
+            ["C", props.problemLevel["C"], props.problemUnsolvedLevel["C"]],
+            ["D", props.problemLevel["D"], props.problemUnsolvedLevel["D"]],
+            ["E", props.problemLevel["E"], props.problemUnsolvedLevel["E"]],
+            ["F", props.problemLevel["F"], props.problemUnsolvedLevel["F"]],
+            ["G", props.problemLevel["G"], props.problemUnsolvedLevel["G"]],
+            ["H", props.problemLevel["H"], props.problemUnsolvedLevel["H"]],
+            ["I", props.problemLevel["I"], props.problemUnsolvedLevel["I"]],
+            ["J", props.problemLevel["J"], props.problemUnsolvedLevel["J"]],
+            ["K", props.problemLevel["K"], props.problemUnsolvedLevel["K"]],
+            ["L", props.problemLevel["L"], props.problemUnsolvedLevel["L"]]
           ]}
           options={{
             // Material design options
